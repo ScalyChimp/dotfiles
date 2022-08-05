@@ -1,0 +1,129 @@
+font pango:Jetbrains Mono 0
+
+set $mod Mod4
+
+default_border pixel 0
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
+
+bindsym $mod+m split h
+# split in vertical orientation
+bindsym $mod+n split v
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+bindsym $mod+Return exec alacritty
+
+bindsym $mod+q kill
+
+bindsym $mod+Shift+e exec emacsclient -cna ""
+
+bindsym $mod+Shift+b exec firefox
+
+# start dmenu (a program launcher)
+# bindsym $mod+d exec --no-startup-id dmenu_run
+# A more modern dmenu replacement is rofi:
+bindsym $mod+v exec "rofi -modi drun,run -show drun"
+# There also is i3-dmenu-desktop which only displays applications shipping a
+# .desktop file. It is a wrapper around dmenu, so you need that installed.
+# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+exec variety
+exec picom
+exec "emacs --daemon"
+# for_window [class="^.*"] border pixel 0
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1:Dev"
+set $ws2 "2:Web"
+set $ws3 "3:Chat"
+
+# switch to workspace
+bindsym $mod+a workspace $ws1
+bindsym $mod+s workspace $ws2
+bindsym $mod+d workspace $ws3
+
+# move focused container to workspace
+bindsym $mod+Shift+a move container to workspace $ws1
+bindsym $mod+Shift+s move container to workspace $ws2
+bindsym $mod+Shift+d move container to workspace $ws3
+
+assign [class="emacs"] $ws1
+assign [class="Emacs"] $ws1
+assign [class="firefox"] $ws2
+assign [class="Navigator"] $ws2
+assign [class="Ripcord"] $ws3
+
+# exec --no-startup-id i3-msg 'workspace $ws3; exec ripcord'
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+y exec "i3-msg exit"
+bindsym $mod+Shift+q exec "poweroff"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym h resize shrink width 7 px or 7 ppt
+        bindsym j resize grow height 7 px or 7 ppt
+        bindsym k resize shrink height 7 px or 7 ppt
+        bindsym l RESIZE grow width 7 px or 7 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# colour choices
+# class                 border  backgr. text    indicator child_border
+client.focused          #fabd2f #fabd2f #ffffff #83a598   #fabd2f
+client.focused_inactive #21272e #5f676a #ffffff #484e50   #21272e
+client.unfocused        #21272e #222222 #888888 #292d2e   #21272e
+client.urgent           #21272e #A54242 #ffffff #A54242   #A54242
+
+exec firefox
+exec emacsclient -cna ""
+exec --no-startup-id i3-msg $ws1
