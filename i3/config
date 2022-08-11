@@ -70,7 +70,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+f exec polybar-msg cmd toggle
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
