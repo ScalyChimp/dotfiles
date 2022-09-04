@@ -43,8 +43,9 @@ bindsym $mod+v exec "rofi -modi drun,run -show drun"
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 exec variety
 exec picom
+exec nitrogen --restore
 exec "emacs --daemon"
-# for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 0
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -70,7 +71,8 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f exec polybar-msg cmd toggle
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f exec polybar-msg cmd toggle
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -127,3 +129,4 @@ client.urgent           #21272e #A54242 #ffffff #A54242   #A54242
 exec firefox
 exec emacsclient -cna ""
 exec --no-startup-id i3-msg $ws1
+gaps inner 3
