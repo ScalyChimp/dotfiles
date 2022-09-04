@@ -1,3 +1,3 @@
-function emx --wraps='emacsclient -t' --description 'alias emx=emacsclient -t'
-  emacsclient -t $argv; 
+function emx --wraps=emacsclient\ -cna\ \'\' --description alias\ emx=emacsclient\ -cna\ \'\'
+  emacsclient -cna '' $argv; 
 end
