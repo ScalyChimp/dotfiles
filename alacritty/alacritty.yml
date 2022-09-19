@@ -551,6 +551,40 @@ schemes:
       cyan:    '#54ced6'
       white:   '#282a2e'
 
+  ### Doom Molokai ###
+  TomorrowNight: &DoomMolokai
+     # Default colors
+    primary:
+      background: '#1c1e1f'
+      foreground: '#d6d6d4'
+
+    # Colors the cursor will use if `custom_cursor_colors` is true
+    cursor:
+      text: '#1c1e1f'
+      cursor: '#fb2874'
+
+    # Normal colors
+    normal:
+      black:   '#1B2229'
+      red:     '#e74c3c'
+      green:   '#b6e63e'
+      yellow:  '#e2c770'
+      blue:    '#268bd2'
+      magenta: '#fb2874'
+      cyan:    '#66d9ef'
+      white:   '#d6d6d4'
+
+    # Bright colors
+    bright:
+      black:   '#666666'
+      red:     '#ff3334'
+      green:   '#9ec400'
+      yellow:  '#f0c674'
+      blue:    '#81a2be'
+      magenta: '#b77ee0'
+      cyan:    '#54ced6'
+      white:   '#d6d6d4'
+
 ######################################################################
 ## SET THEME: Choose ONE color scheme from those in the above list. ##
 ## ###################################################################
@@ -565,8 +599,9 @@ schemes:
 # *SolarizedLight
 # *SolarizedDark
 # *TomorrowNight
+# *DoomMolokai
 
-colors: *GruvboxDark
+colors: *DoomMolokai
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
