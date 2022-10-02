@@ -601,7 +601,7 @@ schemes:
 # *TomorrowNight
 # *DoomMolokai
 
-colors: *DoomMolokai
+colors: *GruvboxDark
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
