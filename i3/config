@@ -43,7 +43,7 @@ bindsym $mod+v exec "rofi -modi drun,run -show drun"
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 exec variety
 exec picom
-exec nitrogen --restore
+exec_always nitrogen --restore
 for_window [class="^.*"] border pixel 0
 # change focus
 bindsym $mod+h focus left
