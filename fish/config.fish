@@ -5,3 +5,4 @@ end
 set -gx EDITOR /usr/bin/emacs $argv
 
 starship init fish | source
+zoxide init fish | source
